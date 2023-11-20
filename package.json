@@ -1,3 +1,38 @@
 {
-  "description": ""
+  "name": "@tetarchus/utils",
+  "version": "0.1.0",
+  "description": "Shared Utility Packages",
+  "license": "MIT",
+  "keywords": [
+    "utilities",
+    "utils"
+  ],
+  "author": "Tetarchus <contact@tetbot.app>",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/tetarchus/utils.git"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "npm run build -w tabulus",
+    "docs:build": "npm run build -w @tabulus/docs",
+    "docs:dev": "npm run dev -w @tabulus/docs",
+    "docs:start": "npm run start -w @tabulus/docs",
+    "lint": "eslint .",
+    "publish": "npm run publish -w tabulus",
+    "storybook:start": "npm run storybook:start -w tabulus",
+    "test": "npm run test -w tabulus",
+    "tsc": "npm run tsc -w tabulus",
+    "validate": "npm run tsc && npm run lint && npm run test"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "lodash-es": "4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "4.17.11",
+    "typescript": "5.3.2"
+  }
 }
