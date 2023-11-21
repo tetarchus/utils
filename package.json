@@ -1,6 +1,6 @@
 {
   "name": "@tetarchus/utils",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Shared Utility Packages",
   "license": "MIT",
   "keywords": [
@@ -19,36 +19,42 @@
     ".": {
       "import": {
         "default": "./dist/index.js",
+        "require": "./dist/index.cjs",
         "types": "./dist/index.d.ts"
       }
     },
     "./client": {
       "import": {
         "default": "./dist/client/index.js",
+        "require": "./dist/client/index.cjs",
         "types": "./dist/client/index.d.ts"
       }
     },
     "./core": {
       "import": {
         "default": "./dist/core/index.js",
+        "require": "./dist/core/index.cjs",
         "types": "./dist/core/index.d.ts"
       }
     },
     "./remix": {
       "import": {
         "default": "./dist/remix/index.js",
+        "require": "./dist/remix/index.cjs",
         "types": "./dist/remix/index.d.ts"
       }
     },
     "./server": {
       "import": {
         "default": "./dist/server/index.js",
+        "require": "./dist/server/index.cjs",
         "types": "./dist/server/index.d.ts"
       }
     },
     "./typeguards": {
       "import": {
         "default": "./dist/typeguards/index.js",
+        "require": "./dist/typescript/index.cjs",
         "types": "./dist/typeguards/index.d.ts"
       }
     }
