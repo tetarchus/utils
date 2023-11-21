@@ -11,9 +11,10 @@ const tsupConfig = defineConfig({
     'src/server/index.ts',
     'src/typeguards/index.ts',
   ],
-  format: ['esm'],
+  format: ['cjs', 'esm'],
   minify: false,
   shims: true,
+  splitting: true,
   sourcemap: true,
 });
 
