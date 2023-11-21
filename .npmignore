@@ -3,3 +3,5 @@ docs
 *.tgz
 .npmrc
 .gitignore
+.github
+.prettierrc

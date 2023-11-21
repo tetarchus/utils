@@ -16,8 +16,11 @@ const ldJsonProperty = 'script:ld+json';
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaCharset} tag.
  */
-const isCharsetMeta = (meta: MetaDescriptor): meta is MetaCharset =>
-  'charSet' in meta && typeof meta.charSet === 'string' && meta.charSet.toLowerCase() === 'utf-8';
+const isCharsetMeta = (meta: MetaDescriptor | undefined): meta is MetaCharset =>
+  meta != null &&
+  'charSet' in meta &&
+  typeof meta.charSet === 'string' &&
+  meta.charSet.toLowerCase() === 'utf-8';
 
 /**
  * Typeguard to check whether a {@link MetaDescriptor} contains a 'document'
@@ -25,7 +28,8 @@ const isCharsetMeta = (meta: MetaDescriptor): meta is MetaCharset =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaDocument} tag.
  */
-const isDocumentMeta = (meta: MetaDescriptor): meta is MetaDocument =>
+const isDocumentMeta = (meta: MetaDescriptor | undefined): meta is MetaDocument =>
+  meta != null &&
   'name' in meta &&
   typeof meta.name === 'string' &&
   'content' in meta &&
@@ -37,7 +41,8 @@ const isDocumentMeta = (meta: MetaDescriptor): meta is MetaDocument =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaHttpEquiv} tag.
  */
-const isHttpEquivMeta = (meta: MetaDescriptor): meta is MetaHttpEquiv =>
+const isHttpEquivMeta = (meta: MetaDescriptor | undefined): meta is MetaHttpEquiv =>
+  meta != null &&
   'httpEquiv' in meta &&
   typeof meta.httpEquiv === 'string' &&
   'content' in meta &&
@@ -48,8 +53,8 @@ const isHttpEquivMeta = (meta: MetaDescriptor): meta is MetaHttpEquiv =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaLdJson} tag.
  */
-const isLdJsonMeta = (meta: MetaDescriptor): meta is MetaLdJson =>
-  ldJsonProperty in meta && typeof meta[ldJsonProperty] === 'object';
+const isLdJsonMeta = (meta: MetaDescriptor | undefined): meta is MetaLdJson =>
+  meta != null && ldJsonProperty in meta && typeof meta[ldJsonProperty] === 'object';
 
 /**
  * Typeguard to check whether a {@link MetaDescriptor} contains a valid 'property' tag with
@@ -57,7 +62,8 @@ const isLdJsonMeta = (meta: MetaDescriptor): meta is MetaLdJson =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaProperty} tag.
  */
-const isPropertyMeta = (meta: MetaDescriptor): meta is MetaProperty =>
+const isPropertyMeta = (meta: MetaDescriptor | undefined): meta is MetaProperty =>
+  meta != null &&
   'property' in meta &&
   typeof meta.property === 'string' &&
   'content' in meta &&
@@ -68,7 +74,8 @@ const isPropertyMeta = (meta: MetaDescriptor): meta is MetaProperty =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaTagName} tag.
  */
-const isTagNameMeta = (meta: MetaDescriptor): meta is MetaTagName =>
+const isTagNameMeta = (meta: MetaDescriptor | undefined): meta is MetaTagName =>
+  meta != null &&
   'tagName' in meta &&
   typeof meta.tagName === 'string' &&
   (meta.tagName === 'meta' || meta.tagName === 'link');
@@ -78,8 +85,8 @@ const isTagNameMeta = (meta: MetaDescriptor): meta is MetaTagName =>
  * @param meta The meta descriptor to check.
  * @returns `true` if the `meta` contains a valid {@link MetaTitle} tag.
  */
-const isTitleMeta = (meta: MetaDescriptor): meta is MetaTitle =>
-  'title' in meta && typeof meta.title === 'string';
+const isTitleMeta = (meta: MetaDescriptor | undefined): meta is MetaTitle =>
+  meta != null && 'title' in meta && typeof meta.title === 'string';
 
 /**
  * Typeguard to check whether a {@link MetaDescriptor} contains any tag not already covered, in
@@ -88,7 +95,8 @@ const isTitleMeta = (meta: MetaDescriptor): meta is MetaTitle =>
  * @returns `true` if the `meta` contains any content other than the other types already
  * covered above.
  */
-const isUnknownMeta = (meta: MetaDescriptor): meta is Record<string, unknown> =>
+const isUnknownMeta = (meta: MetaDescriptor | undefined): meta is Record<string, unknown> =>
+  meta != null &&
   !isCharsetMeta(meta) &&
   !isTitleMeta(meta) &&
   !isHttpEquivMeta(meta) &&
