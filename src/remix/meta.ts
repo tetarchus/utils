@@ -71,12 +71,17 @@ const mapMetaTags = (tags: MetaDescriptor[]): Record<string, MetaDescriptor[]> =
  * Creates a custom version of `mergeTitles` with some configuration. The default version is
  * exported as `mergeTitles`, but this can be used to create a custom util in a package.
  * @param param0 Configuration object for setting a custom mergeTitles function.
+ * @param param0.titleDir The direction to join titles. `LTR` will have the most recent title on
+ * the right, with `RTL` having the most recent title on the left.
+ * @param param0.titleJoinChar The character to use when joining titles. This will be placed
+ * between each title section without changes, so if spaces are required, they should be included
+ * here.
  * @returns A customized function that can be passed in to `mergeMeta`.
  */
 const mergeTitlesCustom =
   ({
     titleDir = 'LTR',
-    titleJoinChar = '|',
+    titleJoinChar = ' | ',
   }: {
     titleDir?: 'LTR' | 'RTL';
     titleJoinChar?: string;
