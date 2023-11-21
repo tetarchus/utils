@@ -17,7 +17,7 @@ npm i @tetarchus/utils
 ## Usage
 
 ```ts
-import {filterFalsy} from '@tetarchus/utils';
+import {filterFalsy} from '@tetarchus/utils/core';
 
 const array.filter(filterFalsy);
 ```
@@ -26,4 +26,4 @@ const array.filter(filterFalsy);
 
 ### Array
 
-- [arrayIncludes](./docs/array/arrayIncludes.md) - A more type-aware version of `Array.prototype.includes()`
+- [arrayIncludes](./docs/core/array/arrayIncludes.md) - A more type-aware version of `Array.prototype.includes()`
