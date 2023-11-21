@@ -67,7 +67,7 @@
     "@remix-run/node": "2.3.0",
     "@types/lodash-es": "4.17.11",
     "@types/node": "20.9.3",
-    "tsup": "8.0.0",
+    "tsup": "8.0.1",
     "typescript": "5.3.2"
   }
 }
