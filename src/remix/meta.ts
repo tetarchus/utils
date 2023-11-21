@@ -83,14 +83,16 @@ const mergeTitlesCustom =
   }): MetaFunction<CombinedLoaderFunction, Record<string, CombinedLoaderFunction>> =>
   ({ matches }) => {
     const parentTitles = matches
-      // Map all meta entries into a single array
-      .flatMap(match => (match.data as (typeof match)['data'] | undefined)?.title)
+      // Map all title/title meta entries into a single array
+      .flatMap(match => {
+        const loaderTitle = (match.data as (typeof match)['data'] | undefined)?.title;
+        const metaTitleObject = match.meta.find(meta => isTitleMeta(meta));
+        const metaTitle = isTitleMeta(metaTitleObject) && metaTitleObject.title;
+        return loaderTitle ?? metaTitle;
+      })
       // Remove non-false, non-empty titles
       .filter(filterFalsy);
 
-    // Extract the current page title and add to the array if it exists.
-    // const { title: pageTitle } = data;
-    // if (pageTitle) parentTitles.push(pageTitle);
     // If direction is RTL, the current page title should be on the left - reverse the array
     if (titleDir === 'RTL') parentTitles.reverse();
 

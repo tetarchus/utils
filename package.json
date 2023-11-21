@@ -55,7 +55,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "publish": "npm publish --access public"
+    "npm:publish": "npm publish --access public"
   },
   "engines": {
     "node": ">=18.0.0"
