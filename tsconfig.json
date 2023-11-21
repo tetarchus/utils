@@ -1,5 +1,5 @@
 {
-  "exclude": ["./apps/", "./packages/", "node_modules"],
+  "exclude": ["dist", "docs", "node_modules", "*.tgz"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -8,6 +8,7 @@
     "allowUnusedLabels": false,
     "baseUrl": ".",
     "checkJs": true,
+    "declaration": true,
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
@@ -17,7 +18,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "newLine": "lf",
-    "noEmit": true,
+    "noEmit": false,
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -28,6 +29,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "./dist",
     "paths": {
       "~/*": ["./src/*"]
     },

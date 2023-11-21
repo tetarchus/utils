@@ -13,17 +13,43 @@
     "url": "https://github.com/tetarchus/utils.git"
   },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./client": {
+      "import": {
+        "default": "./dist/client/index.js",
+        "types": "./dist/client/index.d.ts"
+      }
+    },
+    "./core": {
+      "import": {
+        "default": "./dist/core/index.js",
+        "types": "./dist/core/index.d.ts"
+      }
+    },
+    "./remix": {
+      "import": {
+        "default": "./dist/remix/index.js",
+        "types": "./dist/remix/index.d.ts"
+      }
+    },
+    "./server": {
+      "import": {
+        "default": "./dist/server/index.js",
+        "types": "./dist/server/index.d.ts"
+      }
+    },
+    "./typeguards": {
+      "import": {
+        "default": "./dist/typeguards/index.js",
+        "types": "./dist/typeguards/index.d.ts"
+      }
+    }
+  },
   "scripts": {
-    "build": "npm run build -w tabulus",
-    "docs:build": "npm run build -w @tabulus/docs",
-    "docs:dev": "npm run dev -w @tabulus/docs",
-    "docs:start": "npm run start -w @tabulus/docs",
-    "lint": "eslint .",
-    "publish": "npm run publish -w tabulus",
-    "storybook:start": "npm run storybook:start -w tabulus",
-    "test": "npm run test -w tabulus",
-    "tsc": "npm run tsc -w tabulus",
-    "validate": "npm run tsc && npm run lint && npm run test"
+    "build": "tsc",
+    "publish": "npm publish"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -32,6 +58,7 @@
     "lodash-es": "4.17.21"
   },
   "devDependencies": {
+    "@remix-run/node": "2.3.0",
     "@types/lodash-es": "4.17.11",
     "typescript": "5.3.2"
   }
