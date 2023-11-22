@@ -58,7 +58,7 @@
     "lodash-es": "4.17.21"
   },
   "devDependencies": {
-    "@remix-run/node": "2.3.0",
+    "@remix-run/node": "2.3.1",
     "@types/lodash-es": "4.17.12",
     "@types/node": "20.9.3",
     "tsup": "8.0.1",
