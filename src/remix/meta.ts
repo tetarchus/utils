@@ -1,6 +1,4 @@
-// import { TITLE_JOIN_CHAR, TITLE_NEW_DIR } from '~/constants';
-
-import { filterFalsy, objectEntries, objectKeys } from '~/core';
+import { filterFalsy } from '~/core';
 import {
   isCharsetMeta,
   isDocumentMeta,
@@ -9,9 +7,10 @@ import {
   isPropertyMeta,
   isTagNameMeta,
   isTitleMeta,
+  ldJsonProperty,
 } from '~/typeguards';
 
-import type { MetaFunction } from '@remix-run/node';
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import type { MetaDescriptor } from '~/types';
 
 type CombinedLoaderFunction = () => { title: string };
@@ -56,9 +55,11 @@ const mapMetaTags = (tags: MetaDescriptor[]): Record<string, MetaDescriptor[]> =
     } else if (isTitleMeta(tag)) {
       addToTagMapArray('title', tag, tagMap);
     } else if (isLdJsonMeta(tag)) {
-      addToTagMapArray('script:ld+json', tag, tagMap);
+      addToTagMapArray(ldJsonProperty, tag, tagMap);
     } else if (isCharsetMeta(tag) && tagMap['charSet']?.length !== 1) {
       tagMap['charSet'] = [tag];
+    } else if (isCharsetMeta(tag)) {
+      // Ignore - charset already set
     } else {
       addToTagMapArray('custom', tag, tagMap);
     }
@@ -113,56 +114,36 @@ const mergeTitlesCustom =
  */
 const mergeTitles = mergeTitlesCustom({});
 
+// TODO: Improve JSDoc
 /**
- * Custom merge function for metas to allow for overriding some values and appending others to
- * the parent route's values.
- * @see https://gist.github.com/ryanflorence/ec1849c6d690cfbffcb408ecd633e069
- * @param overrideFunction Function that returns meta values to override from parent values.
- * @param appendFunctionn Function that returns meta values to append to parent values.
- * @example
- * import { mergeMeta } from "./merge-meta";
- * const meta = mergeMeta(
- * // These will override the parent meta
- * ({ data }) => [{ title: data.title }];
- * // These will be appended to the parent meta
- * ({ matches }) => [{ name: "author", content: "Tetarchus" }];
- * );
- * @returns All of the meta values for the route.
+ * Function for merging meta values from parents.
+ * Based on the gist linked below.
+ * @see https://gist.github.com/ryanflorence/ec1849c6d690cfbffcb408ecd633e069?permalink_comment_id=4706751#gistcomment-4706751
  */
 const mergeMeta =
-  (
-    overrideFunction: MetaFunction<CombinedLoaderFunction, Record<string, CombinedLoaderFunction>>,
-    appendFunction?: MetaFunction<CombinedLoaderFunction, Record<string, CombinedLoaderFunction>>,
-  ): MetaFunction<CombinedLoaderFunction, Record<string, CombinedLoaderFunction>> =>
-  args => {
-    // Get meta from parent routes
-    const mergedMeta = args.matches.flatMap(match => match.meta);
-    const tagMap = mapMetaTags(mergedMeta);
+  <Loader extends LoaderFunction, ParentsLoaders extends Record<string, LoaderFunction>>(
+    leafMetaFn: MetaFunction<Loader, ParentsLoaders>,
+  ): MetaFunction<Loader, ParentsLoaders> =>
+  arg => {
+    const leafMeta = leafMetaFn(arg);
 
-    // Replace any parent meta with the same name or property with the override
-    const overrides = overrideFunction(args);
-    for (const override of overrides) {
-      const existing = objectKeys(tagMap).find(
-        key =>
-          (isDocumentMeta(override) && key === override.name) ||
-          (isPropertyMeta(override) && key === override.property) ||
-          (isHttpEquivMeta(override) && key === override.httpEquiv) ||
-          (isTitleMeta(override) && key === 'title'),
-      );
-      if (existing) {
-        tagMap[existing] = [override];
-      } else {
-        const overrideMeta = mapMetaTags([override]);
-        for (const key of objectKeys(overrideMeta)) {
-          ({ key: tagMap[key] = [] } = overrideMeta);
+    return arg.matches.reduceRight((acc, match) => {
+      for (const parentMeta of match.meta) {
+        const index = acc.findIndex(
+          meta =>
+            ('name' in meta && 'name' in parentMeta && meta.name === parentMeta.name) ||
+            ('property' in meta &&
+              'property' in parentMeta &&
+              meta.property === parentMeta.property) ||
+            ('title' in meta && 'title' in parentMeta),
+        );
+        if (index == -1) {
+          // Parent meta not found in acc, so add it
+          acc.push(parentMeta);
         }
       }
-    }
-
-    // Append any additional meta
-    const appends = appendFunction?.(args);
-
-    return [...objectEntries(tagMap).flatMap(([_key, entry]) => entry), ...(appends ?? [])];
+      return acc;
+    }, leafMeta);
   };
 
 export { addToTagMapArray, mapMetaTags, mergeMeta, mergeTitles, mergeTitlesCustom };
