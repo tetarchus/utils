@@ -36,7 +36,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES6",
+    "target": "ESNext",
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   }
