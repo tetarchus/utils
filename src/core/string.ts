@@ -9,7 +9,7 @@ const generateInitials = (text: string | null | undefined): string =>
   snakeCase(text ?? '')
     .split('_')
     .map(name => name.at(0)?.toUpperCase())
-    .join('') ?? '';
+    .join('');
 
 /**
  * Type-safe version of `String.toUpperCase()` that maintains the type of the input string.
