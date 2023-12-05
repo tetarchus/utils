@@ -5,3 +5,5 @@ docs
 .gitignore
 .github
 .prettierrc
+__test__
+coverage
