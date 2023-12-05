@@ -4,3 +4,4 @@ This is where the majority of the utils live. They usually relate to a core type
 
 - [array](./array/toc.md) - Functions that relate to arrays
 - [object](./object/toc.md) - Functions that relate to objects
+- [string](./string/toc.md) - Functions that relate to strings
