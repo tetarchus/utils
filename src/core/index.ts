@@ -1,4 +1,4 @@
-export { arrayIncludes, filterFalsy, filterNull } from './array';
+export { arrayIncludes, filterFalsy, filterNull, isArray } from './array';
 export {
   cleanObject,
   fromEntries,
@@ -7,3 +7,4 @@ export {
   objectKeys,
   swapKeyValue,
 } from './object';
+export { generateInitials, toLowerCase, toUpperCase } from './string';
