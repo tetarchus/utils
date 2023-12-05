@@ -20,7 +20,7 @@ const objectKeys = <T extends object>(object: T): Array<keyof T> =>
  */
 const objectEntries = <
   O extends object,
-  K = keyof O,
+  K = keyof O extends string ? keyof O : string,
   V = O extends Record<string, infer L> ? L : never,
 >(
   object: O,
