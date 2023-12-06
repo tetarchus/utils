@@ -50,6 +50,7 @@
   "scripts": {
     "build": "tsup",
     "npm:publish": "npm publish --access public",
+    "publish": "np",
     "test": "vitest run --config ./vitest.config.ts",
     "tsc": "tsc"
   },
@@ -66,6 +67,7 @@
     "@vitest/coverage-istanbul": "1.0.1",
     "@vitest/ui": "1.0.1",
     "jsdom": "22.1.0",
+    "np": "9.1.0",
     "tsup": "8.0.1",
     "typescript": "5.3.2",
     "vitest": "1.0.1"
