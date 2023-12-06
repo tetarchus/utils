@@ -1,6 +1,6 @@
 {
   "name": "@tetarchus/utils",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Shared Utility Packages",
   "license": "MIT",
   "keywords": [
@@ -50,7 +50,6 @@
   "scripts": {
     "build": "tsup",
     "npm:publish": "npm publish --access public",
-    "publish": "np",
     "test": "vitest run --config ./vitest.config.ts",
     "tsc": "tsc"
   },
