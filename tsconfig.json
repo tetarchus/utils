@@ -1,5 +1,14 @@
 {
-  "exclude": ["dist", "docs", "node_modules", "*.tgz"],
+  "exclude": [
+    ".vscode",
+    "*.tgz",
+    "**/__test__/*",
+    "coverage",
+    "dist",
+    "docs",
+    "node_modules",
+    "vitest.config.ts"
+  ],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -36,7 +45,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES6",
+    "target": "ESNext",
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
   }

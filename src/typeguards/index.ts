@@ -7,4 +7,5 @@ export {
   isTagNameMeta,
   isTitleMeta,
   isUnknownMeta,
+  ldJsonProperty,
 } from './meta';

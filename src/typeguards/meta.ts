@@ -114,4 +114,5 @@ export {
   isTagNameMeta,
   isTitleMeta,
   isUnknownMeta,
+  ldJsonProperty,
 };

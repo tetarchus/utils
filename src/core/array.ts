@@ -1,6 +1,15 @@
 import type { Truthy } from 'lodash';
 
 /**
+ * A more type-aware version of `Array.isArray()` that returns the type of array, rather
+ * than `any[]`.
+ * @param value A value that may potentially be an array.
+ * @returns `true` if `value` is an array, with type narrowing to the array type. `false` if `value`
+ * is not an array.
+ */
+const isArray = <T = unknown>(value: T | T[]): value is T[] => Array.isArray(value);
+
+/**
  * A more type-aware version of `Array.includes()` that allows a wider range of types in the
  * `searchElement` (in the standard version `searchElement` must be the same type as the array)
  * and uses type narrowing of the returned value.
@@ -35,4 +44,4 @@ const filterFalsy = <T>(value: T): value is Truthy<T> => Boolean(value);
  */
 const filterNull = <T>(value: T): value is NonNullable<T> => value != null;
 
-export { arrayIncludes, filterFalsy, filterNull };
+export { arrayIncludes, filterFalsy, filterNull, isArray };
