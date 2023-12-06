@@ -4,4 +4,4 @@ export * from './remix';
 export * from './server';
 export * from './typeguards';
 
-export * from './types';
+export type * from './types';
