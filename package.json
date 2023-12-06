@@ -63,7 +63,7 @@
   "devDependencies": {
     "@remix-run/node": "2.3.0",
     "@types/lodash-es": "4.17.12",
-    "@types/node": "20.9.3",
+    "@types/node": "20.10.3",
     "@vitest/coverage-istanbul": "1.0.1",
     "@vitest/ui": "1.0.1",
     "jsdom": "23.0.1",
