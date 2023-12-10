@@ -1,4 +1,6 @@
-import type { DeepWritable } from 'ts-essentials';
+// import type { DeepWritable } from 'ts-essentials';
+
+type DeepWritable<OBJ_T> = { -readonly [P in keyof OBJ_T]: DeepWritable<OBJ_T[P]> };
 
 /** Maps out the types of an object. */
 type MergeIntersectingObjects<ObjT> = { [key in keyof ObjT]: ObjT[key] };
@@ -16,13 +18,12 @@ type CleanObject<T> = {
 type EntriesType = Array<[PropertyKey, unknown]> | ReadonlyArray<readonly [PropertyKey, unknown]>;
 
 /** Converts a tuple array into a Union type. */
-type UnionObjectFromArrayOfPairs<ARR_T extends EntriesType> = DeepWritable<ARR_T> extends Array<
-  infer R
->
-  ? R extends [infer key, infer value]
-    ? { [property in key & PropertyKey]: value }
-    : never
-  : never;
+type UnionObjectFromArrayOfPairs<ARR_T extends EntriesType> =
+  DeepWritable<ARR_T> extends (infer R)[]
+    ? R extends [infer key, infer val]
+      ? { [prop in key & PropertyKey]: val }
+      : never
+    : never;
 
 /** Converts Array of tuple key/value pairs to a typed object.  */
 type EntriesToObject<ARR_T extends EntriesType> = MergeIntersectingObjects<
