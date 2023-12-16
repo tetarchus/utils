@@ -9,4 +9,4 @@ export type {
   MetaTagName,
   MetaTitle,
 } from './meta';
-export type { CleanObject, EntriesToObject, EntriesType, ObjectType } from './object';
+export type { CleanObject, EntriesToObject, EntriesType, Entry, ObjectType } from './object';

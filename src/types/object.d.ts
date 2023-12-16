@@ -32,4 +32,7 @@ type EntriesToObject<ARR_T extends EntriesType> = MergeIntersectingObjects<
 /** Standard object with unknown key/value types. */
 type ObjectType = Record<PropertyKey, unknown>;
 
-export type { CleanObject, EntriesToObject, EntriesType, ObjectType };
+/** An entry in the return of `objectEntries`. */
+type Entry<T> = { [K in keyof T]: [K, T[K]] }[keyof T];
+
+export type { CleanObject, EntriesToObject, EntriesType, Entry, ObjectType };
