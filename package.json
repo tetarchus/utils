@@ -65,7 +65,7 @@
     "@types/node": "20.10.4",
     "@vitest/coverage-istanbul": "1.0.4",
     "@vitest/ui": "1.0.4",
-    "jsdom": "23.0.1",
+    "jsdom": "24.1.2",
     "tsup": "8.0.1",
     "typescript": "5.3.3",
     "vitest": "1.0.4"
