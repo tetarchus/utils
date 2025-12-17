@@ -57,7 +57,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "lodash-es": "4.17.21"
+    "lodash-es": "4.17.22"
   },
   "devDependencies": {
     "@remix-run/node": "2.13.1",
