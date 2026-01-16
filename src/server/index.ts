@@ -1,1 +1,1 @@
-export {};
+export { findUp, findUpSync } from './findUp';
