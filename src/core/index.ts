@@ -1,4 +1,4 @@
-export { arrayIncludes, filterFalsy, filterNull, isArray } from './array';
+export { arrayIncludes, filterFalsy, filterNull, isArray, toArray } from './array';
 export {
   cleanObject,
   fromEntries,

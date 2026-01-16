@@ -1,4 +1,5 @@
 import type { Truthy } from 'lodash';
+import type { Arrayable, Nullable } from '~/types';
 
 /**
  * A more type-aware version of `Array.isArray()` that returns the type of array, rather
@@ -44,4 +45,14 @@ const filterFalsy = <T>(value: T): value is Truthy<T> => Boolean(value);
  */
 const filterNull = <T>(value: T): value is NonNullable<T> => value != null;
 
-export { arrayIncludes, filterFalsy, filterNull, isArray };
+/**
+ * Converts an {@link Arrayable} to an `Array`.
+ * @param array A possible array to convert.
+ * @returns An actual array containing the passed value(s).
+ */
+const toArray = <T>(array?: Nullable<Arrayable<T>>): T[] => {
+  const arr = array ?? [];
+  return Array.isArray(arr) ? arr : [arr];
+};
+
+export { arrayIncludes, filterFalsy, filterNull, isArray, toArray };
