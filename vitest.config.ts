@@ -24,7 +24,7 @@ const viteConfig = defineConfig({
       ],
       include: ['src/**'],
       provider: 'istanbul',
-      reporter: ['clover', 'html-spa', 'json', 'json-summary', 'lcov', 'text'],
+      reporter: ['clover', 'html', 'html-spa', 'json', 'json-summary', 'lcov', 'text'],
     },
     environment: 'jsdom',
     include: ['**/__tests__/**/*.?(c|m)[jt]s?(x)', '**/*.{test,spec}.?(c|m)[jt]s?(x)'],
