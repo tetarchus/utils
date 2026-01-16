@@ -48,6 +48,7 @@
     "build": "tsup",
     "release": "npm run build && npm publish --access public",
     "test": "vitest run --config ./vitest.config.ts",
+    "test:ui": "vitest dev --config ./vitest.config.ts --ui --watch",
     "tsc": "tsc"
   },
   "engines": {
