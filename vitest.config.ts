@@ -9,7 +9,6 @@ const viteConfig = defineConfig({
   test: {
     ...configDefaults,
     coverage: {
-      all: true,
       enabled: true,
       exclude: [
         '**/__tests__/**',
