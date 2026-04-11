@@ -63,4 +63,12 @@ const fullClean = <OBJ_T extends ObjectType>(object: OBJ_T): CleanObject<OBJ_T> 
 const swapKeyValue = <K extends ValidKey, V extends ValidKey>(object: Record<K, V>): Record<V, K> =>
   Object.fromEntries(Object.entries(object).map(([key, value]) => [value, key]));
 
-export { cleanObject, fromEntries, fullClean, objectEntries, objectKeys, swapKeyValue };
+/**
+ * Type guard to assert that a given value is a keyed object.
+ * @param obj The value to check.
+ * @returns `true` if `obj` is a non-null, non-array object.
+ */
+const isObject = (obj: unknown): obj is object =>
+  typeof obj === 'object' && obj != null && !Array.isArray(obj);
+
+export { cleanObject, fromEntries, fullClean, isObject, objectEntries, objectKeys, swapKeyValue };

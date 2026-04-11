@@ -1,6 +1,5 @@
-// import type { DeepWritable } from 'ts-essentials';
-
-type DeepWritable<OBJ_T> = { -readonly [P in keyof OBJ_T]: DeepWritable<OBJ_T[P]> };
+/** Removes `readonly` from all properties in an object, recursively. */
+type DeepWritable<ObjT> = { -readonly [P in keyof ObjT]: DeepWritable<ObjT[P]> };
 
 /** Maps out the types of an object. */
 type MergeIntersectingObjects<ObjT> = { [key in keyof ObjT]: ObjT[key] };
