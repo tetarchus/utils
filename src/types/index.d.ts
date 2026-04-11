@@ -10,4 +10,14 @@ export type {
   MetaTitle,
 } from './meta';
 export type { CleanObject, EntriesToObject, EntriesType, Entry, ObjectType } from './object';
-export type { Arrayable, Awaitable, Nullable } from './util';
+export type {
+  Arrayable,
+  Awaitable,
+  EmptyObject,
+  Falsy,
+  ModifyFn,
+  ModifyNameArrayFn,
+  Nullable,
+  Truthy,
+  UnknownRecord,
+} from './util';

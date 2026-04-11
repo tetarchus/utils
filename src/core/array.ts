@@ -1,5 +1,4 @@
-import type { Truthy } from 'lodash';
-import type { Arrayable, Nullable } from '~/types';
+import type { Arrayable, ModifyFn, Nullable, Truthy } from '~/types';
 
 /**
  * A more type-aware version of `Array.isArray()` that returns the type of array, rather
@@ -55,4 +54,29 @@ const toArray = <T>(array?: Nullable<Arrayable<T>>): T[] => {
   return Array.isArray(arr) ? arr : [arr];
 };
 
-export { arrayIncludes, filterFalsy, filterNull, isArray, toArray };
+/**
+ * Removes duplicate values from an array.
+ * @param values Array of values to dedupe.
+ * @returns Array of values with duplicates removed.
+ */
+const dedupe = <T>(values: T[]): T[] => [...new Set<T>(values)];
+
+/**
+ * Modifies or extends the `originals` array.
+ * @param arrayOrFn Function to modify the original values, or an array of
+ * values to append.
+ * @param originals The original values to modify.
+ * @returns An array of values.
+ */
+const modifyArray = <ArrayType>(
+  arrayOrFn: ModifyFn<ArrayType[]> | ArrayType[],
+  originals: ArrayType[],
+): ArrayType[] => {
+  if (typeof arrayOrFn === 'function') {
+    return arrayOrFn(originals);
+  }
+
+  return dedupe([...originals, ...arrayOrFn]);
+};
+
+export { arrayIncludes, dedupe, filterFalsy, filterNull, isArray, modifyArray, toArray };
