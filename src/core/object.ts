@@ -18,16 +18,16 @@ const objectKeys = <T extends object>(object: T): Array<keyof T> =>
  * @param object The object to get entries for.
  * @returns A typed array of entries (key/value paired tuple) for the object.
  */
-const objectEntries = <T extends object>(object: T): ReadonlyArray<Entry<T>> =>
-  Object.entries(object) as unknown as ReadonlyArray<Entry<T>>;
+const objectEntries = <
+  O extends object,
+  K extends keyof O | string = keyof O extends string ? keyof O : string,
+  V = O extends Record<K, infer L> ? L : never,
+>(
+  object: O,
+): ReadonlyArray<[K, V]> => Object.entries(object) as unknown as ReadonlyArray<[K, V]>;
 // TODO: Remove old code
-// const objectEntries = <
-//   O extends object,
-//   K extends keyof O | string = keyof O extends string ? keyof O : string,
-//   V = O extends Record<K, infer L> ? L : never,
-// >(
-//   object: O,
-// ): Array<[K, V]> => Object.entries(object) as unknown as Array<[K, V]>;
+// const objectEntries = <T extends object>(object: T): ReadonlyArray<Entry<T>> =>
+//   Object.entries(object) as unknown as ReadonlyArray<Entry<T>>;
 
 /**
  * A version of `Object.fromEntries()` that is able to preserve the types passed in and create an
