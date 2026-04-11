@@ -1,6 +1,6 @@
 import { isNil, omitBy } from 'lodash-es';
 
-import type { CleanObject, EntriesToObject, EntriesType, Entry, ObjectType } from '~/types';
+import type { CleanObject, EntriesToObject, EntriesType, ObjectType } from '~/types';
 
 type ValidKey = number | string;
 
