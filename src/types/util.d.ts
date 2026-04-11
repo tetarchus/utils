@@ -19,12 +19,20 @@ type UnknownRecord = Record<string, unknown>;
 /** An object with no keys. */
 type EmptyObject = Record<never, never>;
 
+/** Values equivalent to `false` in comparisons. */
+type Falsy = null | undefined | false | '' | 0 | 0n;
+
+/** Values equivalent to `true` in comparisons. */
+type Truthy<T> = T extends Falsy ? never : T;
+
 export type {
   Arrayable,
   Awaitable,
   EmptyObject,
+  Falsy,
   ModifyFn,
   ModifyNameArrayFn,
   Nullable,
+  Truthy,
   UnknownRecord,
 };

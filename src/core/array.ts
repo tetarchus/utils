@@ -1,5 +1,4 @@
-import type { Truthy } from 'lodash';
-import type { Arrayable, ModifyFn, Nullable } from '~/types';
+import type { Arrayable, ModifyFn, Nullable, Truthy } from '~/types';
 
 /**
  * A more type-aware version of `Array.isArray()` that returns the type of array, rather

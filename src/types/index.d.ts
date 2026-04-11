@@ -14,8 +14,10 @@ export type {
   Arrayable,
   Awaitable,
   EmptyObject,
+  Falsy,
   ModifyFn,
   ModifyNameArrayFn,
   Nullable,
+  Truthy,
   UnknownRecord,
 } from './util';
