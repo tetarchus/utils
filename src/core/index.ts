@@ -11,6 +11,7 @@ export {
   cleanObject,
   fromEntries,
   fullClean,
+  isObject,
   objectEntries,
   objectKeys,
   swapKeyValue,
